@@ -62,7 +62,3 @@
     dog1.name_breed
     -> Name: Buddy, Breed: Golden Retriver
     ```
-
-
-
-## Notes from CS50
