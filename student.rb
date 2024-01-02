@@ -13,7 +13,7 @@ class Student
   def get_name
     puts "what is your name?"
 
-    while (@name = gets.chomp).to_s.empty?
+    while (@name = gets.chomp.capitalize).to_s.empty?
       puts "Missing name, please try again"
       puts "what is your name?"
     end
@@ -22,7 +22,7 @@ class Student
   def get_house
     puts "What house are you in?"
 
-    @house = gets.chomp
+    @house = gets.chomp.capitalize
 
     while @house.empty? || !VALID_HOUSES.include?(@house)
       if @house.empty?
@@ -35,13 +35,24 @@ class Student
     end
   end
 
-  def add_to_house(house, member)
-    @house_members << {house => member}
+  def add_to_house(house, name)
+    @house_members << {@house => @name}
   end
 
   def get_patronus
     puts "What is your patronus?"
-    patronus_name = gets.chomp
+    patronus_name = gets.chomp.downcase
+
+    while patronus_name.empty? || !Patronus::EMOJIS.key?(patronus_name)
+      if patronus_name.empty?
+        puts "Missing patronus, please try again"
+      else
+        puts "Invalid patronus, please try again"
+      end
+      puts "What is your patronus?"
+      patronus_name = gets.chomp
+    end
+
     @patronus = Patronus.new(patronus_name)
   end
 
@@ -49,17 +60,7 @@ class Student
     puts "Expecto Patronum!"
     puts @patronus.emoji
   end
-
-  def get_student
-    get_name
-    get_house
-    get_patronus
-    add_to_house(@house, @name)
-    cast_patronus
-  end
-
   
-
   def to_s
     "#{@name}, from #{@house}, with Patronus #{@patronus} #{@patronus.emoji}"
   end
