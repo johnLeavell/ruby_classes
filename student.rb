@@ -1,10 +1,10 @@
 require_relative 'patronus'
 
 class Student    
-  def initialize(name, house, patronus)
-    @name = name
-    @house = house
-    @patronus = patronus
+  def initialize
+    @name = @name
+    @house = @house
+    @patronus = @patronus
     @house_members = []
   end
 
@@ -64,10 +64,4 @@ class Student
     "#{@name}, from #{@house}, with Patronus #{@patronus} #{@patronus.emoji}"
   end
 end
-    
 
-student = Student.new(@name, @house, @patronus)
-student.get_student
-
-
-puts student
